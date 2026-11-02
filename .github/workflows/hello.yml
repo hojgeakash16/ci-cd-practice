@@ -5,7 +5,8 @@ name: Hello
 
 # when the workflow should work
 on:
-  workflow_dispatch: 
+  push:
+    branches: main
 
 # what permissions it should have
 permissions:
