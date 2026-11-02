@@ -5,8 +5,7 @@ name: Hello
 
 # when the workflow should work
 on:
-  push:
-    branches: main
+  workflow_dispatch:   # this means it will run when you click the "Run workflow" button in the Actions tab
 
 # what permissions it should have
 permissions:
@@ -19,4 +18,4 @@ jobs:
     timeout-minutes: 1
     steps:
       - name: Say Hello
-        run: echo "Hello All"
+        run: echo "Hello Doston"
