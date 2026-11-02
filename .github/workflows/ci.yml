@@ -1,0 +1,26 @@
+# Preparing the first ci file in terms of docker
+
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build the docker image
+        run: docker build -t apache:latest .
+
+      -  name: Run the docker image
+         run: docker run -d -p 8080:80 apache:latest
