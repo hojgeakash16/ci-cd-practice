@@ -1,0 +1,21 @@
+# This is a practice hello yml file
+
+# Name of the workflow
+name: Hello
+
+# when the workflow should work
+on:
+  workflow_dispatch: 
+
+# what permissions it should have
+permissions:
+  contents: read
+
+# what the workflow does
+jobs:
+  hello:
+    runs-on: ubuntu-latest    # where the job runs
+    timeout-minutes: 1
+    steps:
+      - name: Say Hello
+        run: echo "Hello All"
