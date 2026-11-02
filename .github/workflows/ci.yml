@@ -19,6 +19,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Show what we got
+        run: |
+          pwd  
+          ls -al
+          find . -iname 'dockerfile*' -not -path './.git/*'
+
       - name: Build the docker image
         run: docker build -t apache:latest .
 
