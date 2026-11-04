@@ -5,7 +5,11 @@ name: Hello
 
 # when the workflow should work
 on:
-  workflow_dispatch:   # this means it will run when you click the "Run workflow" button in the Actions tab
+  workflow_dispatch:  # this means it will run when you click the "Run workflow" button in the Actions tab
+
+concurrency:
+  group: ci-cd-practice
+  cancel-in-progress: true
 
 # what permissions it should have
 permissions:

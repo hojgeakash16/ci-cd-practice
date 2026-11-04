@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-cd-practice
+  cancel-in-progress: true
+
 jobs:
   code:
     runs-on: ubuntu-latest
