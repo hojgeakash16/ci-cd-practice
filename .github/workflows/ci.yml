@@ -1,32 +1,37 @@
-# Preparing the first ci file in terms of docker
+# Preparing the dummy CI/CD pipeline
 
-name: ci
+name: Dummy CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
-  build:
+  code:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: Clone the code
+        run: echo "Cloning the code..."
 
-      - name: Show what we got
-        run: |
-          pwd  
-          ls -al
-          find . -iname 'dockerfile*' -not -path './.git/*'
+  build:
+      needs: code
+      runs-on: ubuntu-latest
+      steps:
+        - name: Build the code
+          run: echo "Building the code..."
 
-      - name: Build the docker image
-        run: docker build -t apache:latest .
+  test:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Run tests
+          run: echo "Running tests..."
 
-      -  name: Run the docker image
-         run: docker run -d -p 8080:80 apache:latest
+  deploy:
+      needs: [code, build, test]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Deploy the code
+          run: echo "Deploying the code..."
