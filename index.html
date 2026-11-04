@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Home - Your Ultimate Sports Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #004e89;
+            --accent-color: #1ac8da;
+            --dark-color: #0a1128;
+            --light-color: #f0f3f7;
+            --text-color: #333;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+
+        .hero-animation {
+            flex: 1;
+            position: relative;
+            height: 400px;
+        }
+
+        .animated-ball {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, var(--accent-color), var(--primary-color));
+            border-radius: 50%;
+            animation: bounce 3s infinite;
+            box-shadow: 0 0 20px rgba(26, 200, 218, 0.5);
+        }
+
+        .animated-ball:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .animated-ball:nth-child(2) {
+            top: 50%;
+            left: 40%;
+            animation-delay: 0.5s;
+        }
+
+        .animated-ball:nth-child(3) {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-50px); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-block;
+            text-decoration: none;
+            margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* Sports Section */
+        .sports-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .sport-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .sport-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .sport-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .sport-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Teams Section */
+        .teams-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--light-color) 0%, white 100%);
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+        }
+
+        .team-badge {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .team-status {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Events Section */
+        .events-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .events-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .event-card {
+            display: flex;
+            gap: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .event-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateX(10px);
+        }
+
+        .event-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+        }
+
+        .event-date .day {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .event-info {
+            flex: 1;
+        }
+
+        .event-info h4 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn.secondary {
+            background: var(--light-color);
+            color: var(--text-color);
+        }
+
+        /* Accessories Section */
+        .accessories-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--light-color) 0%, white 100%);
+        }
+
+        .accessories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .accessory-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .accessory-card:hover {
+            transform: rotate(5deg) translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .accessory-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .accessory-card h4 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .accessory-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card:hover i {
+            color: white;
+        }
+
+        .contact-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .sports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card {
+                flex-direction: column;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .hero-animation {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-basketball"></i> SportHub
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#sports" class="nav-link">Sports</a>
+                <a href="#teams" class="nav-link">Teams</a>
+                <a href="#events" class="nav-link">Events</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to SportHub</h1>
+            <p class="hero-subtitle">Your Ultimate Sports Destination</p>
+            <button class="btn btn-primary" onclick="scrollToSection('sports')">Explore Sports</button>
+            <button class="btn btn-secondary" onclick="scrollToSection('events')">View Events</button>
+        </div>
+        <div class="hero-animation">
+            <div class="animated-ball"></div>
+            <div class="animated-ball"></div>
+            <div class="animated-ball"></div>
+        </div>
+    </section>
+
+    <!-- Sports Grid Section -->
+    <section id="sports" class="sports-section">
+        <div class="container">
+            <h2 class="section-title">Popular Sports</h2>
+            <div class="sports-grid">
+                <div class="sport-card">
+                    <div class="card-icon">
+                        <i class="fas fa-football-ball"></i>
+                    </div>
+                    <h3>Football</h3>
+                    <p>Experience the thrill of the beautiful game</p>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+
+                <div class="sport-card">
+                    <div class="card-icon">
+                        <i class="fas fa-basketball"></i>
+                    </div>
+                    <h3>Basketball</h3>
+                    <p>Fast-paced action and incredible skills</p>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+
+                <div class="sport-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tennis"></i>
+                    </div>
+                    <h3>Tennis</h3>
+                    <p>Precision, power, and perfect technique</p>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+
+                <div class="sport-card">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Cricket</h3>
+                    <p>The game of skill and strategy</p>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+
+                <div class="sport-card">
+                    <div class="card-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Swimming</h3>
+                    <p>Dive into excellence and speed</p>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+
+                <div class="sport-card">
+                    <div class="card-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>Golf</h3>
+                    <p>Precision sport of champions</p>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams Section -->
+    <section id="teams" class="teams-section">
+        <div class="container">
+            <h2 class="section-title">Featured Teams</h2>
+            <div class="teams-grid">
+                <div class="team-card">
+                    <div class="team-badge">⚽</div>
+                    <h3>Champions FC</h3>
+                    <p class="team-status">Active</p>
+                    <button class="btn btn-small btn-primary">Follow</button>
+                </div>
+                <div class="team-card">
+                    <div class="team-badge">🏀</div>
+                    <h3>Victory Hoops</h3>
+                    <p class="team-status">Active</p>
+                    <button class="btn btn-small btn-primary">Follow</button>
+                </div>
+                <div class="team-card">
+                    <div class="team-badge">🎾</div>
+                    <h3>Ace Tennis Club</h3>
+                    <p class="team-status">Active</p>
+                    <button class="btn btn-small btn-primary">Follow</button>
+                </div>
+                <div class="team-card">
+                    <div class="team-badge">🏏</div>
+                    <h3>Elite Cricket</h3>
+                    <p class="team-status">Active</p>
+                    <button class="btn btn-small btn-primary">Follow</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Events Section -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-list">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">AUG</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Football Championship</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> National Stadium</p>
+                        <div class="event-actions">
+                            <button class="btn btn-small btn-primary">Get Tickets</button>
+                            <button class="btn btn-small secondary">Add to Calendar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">22</span>
+                        <span class="month">AUG</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Basketball Tournament</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> City Arena</p>
+                        <div class="event-actions">
+                            <button class="btn btn-small btn-primary">Get Tickets</button>
+                            <button class="btn btn-small secondary">Add to Calendar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">30</span>
+                        <span class="month">AUG</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Tennis Open</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Grand Court</p>
+                        <div class="event-actions">
+                            <button class="btn btn-small btn-primary">Get Tickets</button>
+                            <button class="btn btn-small secondary">Add to Calendar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">05</span>
+                        <span class="month">SEP</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Cricket Series</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> International Stadium</p>
+                        <div class="event-actions">
+                            <button class="btn btn-small btn-primary">Get Tickets</button>
+                            <button class="btn btn-small secondary">Add to Calendar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessories / Features Section -->
+    <section class="accessories-section">
+        <div class="container">
+            <h2 class="section-title">Sports Accessories & Gear</h2>
+            <div class="accessories-grid">
+                <div class="accessory-card">
+                    <div class="accessory-icon">🎽</div>
+                    <h4>Sports Apparel</h4>
+                    <p>Premium quality uniforms and wear</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">👟</div>
+                    <h4>Footwear</h4>
+                    <p>High-performance athletic shoes</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">🎒</div>
+                    <h4>Bags & Backpacks</h4>
+                    <p>Durable sports bags and storage</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">⌚</div>
+                    <h4>Sports Watches</h4>
+                    <p>Track your performance and stats</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">🧢</div>
+                    <h4>Headwear</h4>
+                    <p>Caps, hats, and protective gear</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">💪</div>
+                    <h4>Equipment</h4>
+                    <p>Professional sports equipment</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">🧤</div>
+                    <h4>Protective Gear</h4>
+                    <p>Helmets, pads, and protectors</p>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">📱</div>
+                    <h4>Tech Gadgets</h4>
+                    <p>Smart devices for athletes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2>Subscribe to our Newsletter</h2>
+            <p>Get the latest sports news and updates delivered to your inbox</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" class="email-input">
+                <button class="btn btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>Phone</h4>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>info@sporthub.com</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Location</h4>
+                    <p>123 Sports Ave, Sports City</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>Hours</h4>
+                    <p>Mon - Fri: 9AM - 6PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About SportHub</h4>
+                    <p>Your premier destination for all sports news, events, and updates.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#sports">Sports</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SportHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTopBtn" onclick="backToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Back to top functionality
+        const backToTopBtn = document.getElementById('backToTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        function backToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.style.display = 'none';
+            });
+        });
+
+        // Button click effects
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON') {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => ripple.remove(), 600);
+                }
+            });
+        });
+
+        // Newsletter subscription
+        const emailInput = document.querySelector('.email-input');
+        const subscribeBtn = document.querySelector('.newsletter-section .btn-primary');
+
+        subscribeBtn.addEventListener('click', () => {
+            const email = emailInput.value;
+            if (email && email.includes('@')) {
+                alert('Thank you for subscribing with: ' + email);
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address');
+            }
+        });
+
+        // Intersection Observer for animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInLeft 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.sport-card, .team-card, .event-card, .accessory-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add ripple effect CSS dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            .btn {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple-animation 0.6s ease-out;
+                pointer-events: none;
+            }
+
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('SportHub initialized successfully!');
+    </script>
+</body>
+</html>
