@@ -3,7 +3,7 @@
 name: Dummy CI/CD Pipeline
 
 on:
-  push:
+  workflow_dispatch:  # this means it will run when you click the "Run workflow" button in the Actions tab
 
 permissions:
   contents: read
