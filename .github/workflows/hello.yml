@@ -18,4 +18,11 @@ jobs:
     timeout-minutes: 1
     steps:
       - name: Say Hello
-        run: echo "Hello Doston"
+        run: echo "Hello Doston!"
+              
+  greet:
+    needs: hello
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet the user
+        run: echo "Greetings from the workflow!"
