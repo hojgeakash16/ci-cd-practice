@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 concurrency:
   group: ci-cd-practice
@@ -15,27 +16,28 @@ concurrency:
 jobs:
   code:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: Clone the code
-        run: echo "Cloning the code..."
+      - name: Clone and checkout the repository
+        uses: actions/checkout@v7
 
   build:
-      needs: code
-      runs-on: ubuntu-latest
-      steps:
-        - name: Build the code
-          run: echo "Building the code..."
+    needs: code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build the demo project
+        run: echo "Building the demo project..."
 
   test:
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-        - name: Run tests
-          run: echo "Running tests..."
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run dummy tests
+        run: echo "Running dummy tests..."
 
   deploy:
-      needs: [code, build, test]
-      runs-on: ubuntu-latest
-      steps:
-        - name: Deploy the code
-          run: echo "Deploying the code..."
+    needs: [code, build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the demo project
+        run: echo "Deploying the demo project..."
