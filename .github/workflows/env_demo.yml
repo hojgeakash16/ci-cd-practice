@@ -1,0 +1,33 @@
+# This file is for creating env variables
+
+name: environment_variables
+
+on:
+    workflow_dispatch:
+      inputs:
+        environment:
+          description: 'Select the environment'
+          required: true
+          default: 'dev'
+          type: choice
+          options:
+          - dev
+          - staging
+          - prod
+
+permissions:
+    contents: read
+    id-token: write
+
+env:
+    name: Akash 
+
+jobs:
+  show_env:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Show Name
+          run: The name is ${{ env.name }}
+
+        - name: Show Variables
+          run: My Dockerhub username is ${{ vars.DOCKERHUB_USERNAME }} and my Dockerhub password is ${{ secrets.DOCKERHUB_PASSWORD }}
