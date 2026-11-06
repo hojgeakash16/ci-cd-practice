@@ -12,7 +12,7 @@ on:
           type: choice
           options:
           - dev
-          - staging
+          - test
           - prod
 
 permissions:
@@ -20,7 +20,7 @@ permissions:
     id-token: write
 
 env:
-    name: Akash 
+  name: Akash 
 
 jobs:
   show_env:
