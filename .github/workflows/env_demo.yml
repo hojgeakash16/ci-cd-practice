@@ -3,31 +3,31 @@
 name: environment_variables
 
 on:
-    workflow_dispatch:
-      inputs:
-        environment:
-          description: 'Select the environment'
-          required: true
-          default: 'dev'
-          type: choice
-          options:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
           - dev
           - test
           - prod
 
 permissions:
-    contents: read
-    id-token: write
+  contents: read
+  id-token: write
 
 env:
-  name: Akash 
+  name: Akash
 
 jobs:
   show_env:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Show Name
-          run: The name is ${{ env.name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Name
+        run: echo "The name is ${{ env.name }}"
 
-        - name: Show Variables
-          run: My Dockerhub username is ${{ vars.DOCKERHUB_USERNAME }} and my Dockerhub password is ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Show Variables
+        run: echo "My Dockerhub username is ${{ vars.DOCKERHUB_USERNAME }}"
