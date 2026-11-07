@@ -3,7 +3,7 @@
 name: greet and wish
 
 on:
-  push:
+   workflow_dispatch:
 
 jobs:
   greet:

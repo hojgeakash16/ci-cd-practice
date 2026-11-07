@@ -1,0 +1,30 @@
+# This workflow is for linting and testing the code
+
+name: code lint and test
+
+on:
+    push:
+
+jobs: 
+    code-linter-and-test:
+        strategy:
+            matrix:
+                python-version: ["3.12", "3.13", "3.14"]
+        runs-on: ubuntu-latest
+        steps: 
+            - name: code checkout
+              uses: actions/checkout@v7
+
+            - name: setup python
+              uses: actions/setup-python@v7
+              with:
+                python-version: ${{ matrix.python-version }}
+
+            - name: Install Dependencies
+              run: pip3 install -r requirements.txt
+
+            - name: lint check
+              run: ruff check .
+
+            - name: testing python
+              run: pytest
