@@ -1,43 +1,52 @@
-# Preparing the dummy CI/CD pipeline
+# Preparing the dummy CI pipeline for the yml file. 
 
-name: Dummy CI/CD Pipeline
+name: Dummy CI Pipeline
 
 on:
-  workflow_dispatch:  # this means it will run when you click the "Run workflow" button in the Actions tab
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - test
+          - prod
 
 permissions:
   contents: read
   id-token: write
 
-concurrency:
-  group: ci-cd-practice
-  cancel-in-progress: true
-
 jobs:
   code:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     steps:
-      - name: Clone and checkout the repository
+      - name: Code Checkout
         uses: actions/checkout@v7
 
   build:
     needs: code
     runs-on: ubuntu-latest
     steps:
-      - name: Build the demo project
-        run: echo "Building the demo project..."
+      - name: Build the code
+        run: echo "Building the code"
 
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Run dummy tests
-        run: echo "Running dummy tests..."
+      - name: Running tests for the code
+        run: echo "Running tests for the code"
 
   deploy:
-    needs: [code, build, test]
+    needs: ["code", "build", "test"]
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy the demo project
-        run: echo "Deploying the demo project..."
+      - name: Deploying the code
+        run: echo "Deploying the code"
+
+
+
+  
