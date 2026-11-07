@@ -1,32 +1,27 @@
-# This is a practice hello yml file
+# Preparing the greet and wish workflow
 
-# Name of the workflow
-name: Hello
+name: greet and wish
 
-# when the workflow should work
 on:
-  workflow_dispatch:  # this means it will run when you click the "Run workflow" button in the Actions tab
+  push:
 
-concurrency:
-  group: ci-cd-practice
-  cancel-in-progress: true
-
-# what permissions it should have
-permissions:
-  contents: read
-
-# what the workflow does
 jobs:
-  hello:
-    runs-on: ubuntu-latest    # where the job runs
-    timeout-minutes: 1
-    steps:
-      - name: Say Hello
-        run: echo "Hello Doston!"
-              
   greet:
-    needs: hello
     runs-on: ubuntu-latest
     steps:
       - name: Greet the user
-        run: echo "Greetings from the workflow!"
+        run: echo "Hello, Good Morning Doston"
+
+  wish:
+    needs: greet
+    runs-on: ubuntu-latest
+    steps:
+      - name: wish the user
+        run: echo "Wishing you and your family a very Happy Diwali"
+
+  wish_back:
+    needs: ["greet", "wish"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acknowledge
+        run: echo "Wish you the same, Dost!"
