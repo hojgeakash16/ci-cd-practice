@@ -20,14 +20,14 @@ permissions:
   id-token: write
 
 env:
-  name: Akash
+  name: Akash Subhash Hojge
 
 jobs:
-  show_env:
+  env_demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Show Name
-        run: echo "The name is ${{ env.name }}"
+      - name: Print the full name
+        run: echo "My name is ${{ env.name }}"
 
-      - name: Show Variables
+      - name: Print the Dockerhub username
         run: echo "My Dockerhub username is ${{ vars.DOCKERHUB_USERNAME }}"
